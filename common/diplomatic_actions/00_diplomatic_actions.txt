@@ -251,3 +251,62 @@ invite_to_trade_league = {
 		}
 	}
 }
+
+tributary_state_action = {
+	condition = {
+		potential = {
+			OR= {
+			ai = no
+			ai = yes
+			}
+		}
+		allow = {
+			OR = {
+				NOT = { ROOT = { capital_scope = { superregion = china_superregion } } }
+				AND = {
+					ROOT = { capital_scope = { superregion = china_superregion } }
+					NOT = { FROM = { capital_scope = { superregion = china_superregion } } }
+				}
+			}
+			OR = {
+				NOT = { ROOT = { capital_scope = { region = japan_region } } }
+				AND = {
+					ROOT = { capital_scope = { region = japan_region } }
+					NOT = { FROM = { capital_scope = { region = japan_region } } }
+				}
+			}
+			NOT = { FROM = { is_in_trade_league = yes } }
+			NOT = { FROM = { is_great_power = yes } }
+			ROOT = { is_neighbor_of = FROM }
+		}
+	}
+}
+ask_for_tributary_state_action = {
+	condition = {
+		potential = {
+			OR= {
+			ai = no
+			ai = yes
+			}
+		}
+		allow = {
+			OR = {
+				NOT = { FROM = { capital_scope = { superregion = china_superregion } } }
+				AND = {
+					FROM = { capital_scope = { superregion = china_superregion } }
+					NOT = { ROOT = { capital_scope = { superregion = china_superregion } } }
+				}
+			}
+			OR = {
+				NOT = { FROM = { capital_scope = { region = japan_region } } }
+				AND = {
+					FROM = { capital_scope = { region = japan_region } }
+					NOT = { ROOT = { capital_scope = { region = japan_region } } }
+				}
+			}
+			NOT = { ROOT = { is_in_trade_league = yes } }
+			NOT = { ROOT = { is_great_power = yes } }
+			ROOT = { is_neighbor_of = FROM }
+		}
+	}
+}
